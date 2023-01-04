@@ -13,9 +13,23 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+html,
+body {
+  padding: 0;
+  overflow: hidden;
+}
 .frame-content {
-  height: 90vh;
+  height: 95vh;
   overflow-y: auto;
+  background-color: #a0c3d2;
+}
+.frame-content::-webkit-scrollbar-track {
+  background-color: cadetblue !important;
+  border-radius: 100px;
+}
+.frame-content::-webkit-scrollbar-thumb {
+  background-color: cadetblue;
+  border-radius: 100px;
 }
 </style>
