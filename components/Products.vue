@@ -10,8 +10,12 @@
           </template>
 
           <v-list>
-            <v-list-item-group>
-              <v-list-item v-for="(category, index) in categories" :key="index">
+            <v-list-item-group v-model="categoryId">
+              <v-list-item
+                v-for="(category, index) in categories"
+                :key="index"
+                :value="category.id"
+              >
                 <v-list-item-title>
                   {{ category.title }}
                 </v-list-item-title>
@@ -23,7 +27,7 @@
     </v-row>
 
     <v-row>
-      <v-col v-for="product in products" cols="2">
+      <v-col v-for="product in filteredProducts" cols="2">
         <v-card :key="product.id" :title="product.title" :ripple="true">
           <v-card-actions>
             <v-img
@@ -44,10 +48,12 @@
 export default {
   data() {
     return {
+      categoryId: false,
       categories: [
+        { id: false, title: 'All' },
         { id: 1, title: 'Smartphone' },
         { id: 2, title: 'Camera' },
-        { id: 1, title: 'Televisi' },
+        { id: 3, title: 'Televisi' },
       ],
       products: [
         {
@@ -55,320 +61,117 @@ export default {
           title: 'Asuz Zenfone',
           thumbnail: 'asus-zenfone.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 2,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Canon EOS 700D',
+          thumbnail: 'canon-eos-700d.png',
           price: 2000000,
-          category: 1,
+          categoryId: 2,
         },
         {
           id: 3,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Canon EOS 750D',
+          thumbnail: 'canon-eos-750d.png',
           price: 2000000,
-          category: 1,
+          categoryId: 2,
         },
         {
           id: 4,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Iphone 6 Silver',
+          thumbnail: 'iphone-6-silver.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 5,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Lenovo A7000',
+          thumbnail: 'Lenovo-A7000.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 6,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'LG TV 32',
+          thumbnail: 'lg-32-led-tv-32LF550A.png',
           price: 2000000,
-          category: 1,
+          categoryId: 3,
         },
         {
           id: 7,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'LG TV 32',
+          thumbnail: 'lg-led-tv32-32LF520A.png',
           price: 2000000,
-          category: 1,
+          categoryId: 3,
         },
         {
           id: 8,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Mi 4i',
+          thumbnail: 'mi-4i.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 9,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Nikon D3200',
+          thumbnail: 'nikon-d3200.png',
           price: 2000000,
-          category: 1,
+          categoryId: 2,
         },
         {
           id: 10,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Nikon D5200',
+          thumbnail: 'nikon-d5200.png',
           price: 2000000,
-          category: 1,
+          categoryId: 2,
         },
         {
           id: 11,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Samsung Galaxy A3',
+          thumbnail: 'samsung-galaxy-A3.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 12,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Samsung Galaxy A8',
+          thumbnail: 'samsung-galaxy-A8.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 13,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Samsung Galaxy Grand Prime',
+          thumbnail: 'samsung-galaxy-grand-prime.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 14,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Samsung Galaxy Note 3',
+          thumbnail: 'samsung-galaxy-note-3.png',
           price: 2000000,
-          category: 1,
+          categoryId: 1,
         },
         {
           id: 15,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
+          title: 'Sharp LED 32',
+          thumbnail: 'sharp-32-led-32LE265i.png',
           price: 2000000,
-          category: 1,
-        },
-
-        {
-          id: 1,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 2,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 3,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 4,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 5,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 6,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 7,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 8,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 9,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 10,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 11,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 12,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 13,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 14,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 15,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-
-        {
-          id: 1,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 2,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 3,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 4,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 5,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 6,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 7,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 8,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 9,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 10,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 11,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 12,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 13,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 14,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
-        },
-        {
-          id: 15,
-          title: 'Asuz Zenfone',
-          thumbnail: 'asus-zenfone.png',
-          price: 2000000,
-          category: 1,
+          categoryId: 3,
         },
       ],
     }
+  },
+  // computed akan menjalankan setiap ada perubahan
+  computed: {
+    filteredProducts() {
+      if (this.categoryId) {
+        return this.products.filter((s) => s.categoryId === this.categoryId)
+      }
+      return this.products
+    },
   },
 }
 </script>
