@@ -15,6 +15,7 @@
                 v-for="(category, index) in categories"
                 :key="index"
                 :value="category.id"
+                :disabled="category.id === categoryId"
               >
                 <v-list-item-title>
                   {{ category.title }}
