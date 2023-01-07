@@ -2,7 +2,10 @@
 <template>
   <v-row>
     <v-row>
-      <v-col cols="10"> Search </v-col>
+      <v-col cols="10">
+        <v-autocomplete label="Products" placeholder="Type to search">
+        </v-autocomplete>
+      </v-col>
       <v-col cols="2">
         <v-menu>
           <template #activator="{ on: category }">
@@ -28,7 +31,7 @@
     </v-row>
 
     <v-row>
-      <v-col v-for="product in filteredProducts" cols="2">
+      <v-col v-for="(product, index) in filteredProducts" :key="index" cols="2">
         <v-card :key="product.id" :title="product.title" :ripple="true">
           <v-card-actions>
             <v-img
