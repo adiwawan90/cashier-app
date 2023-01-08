@@ -3,7 +3,12 @@
   <v-row>
     <v-row>
       <v-col cols="10">
-        <v-autocomplete label="Products" placeholder="Type to search">
+        <v-autocomplete
+          label="Products"
+          placeholder="Type to search"
+          :search-input.sync="search"
+          :loading="isLoading"
+        >
         </v-autocomplete>
       </v-col>
       <v-col cols="2">
@@ -166,6 +171,8 @@ export default {
           categoryId: 3,
         },
       ],
+      search: null,
+      isLoading: false,
     }
   },
   // computed akan menjalankan setiap ada perubahan
@@ -175,6 +182,14 @@ export default {
         return this.products.filter((s) => s.categoryId === this.categoryId)
       }
       return this.products
+    },
+  },
+  watch: {
+    search(val) {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
     },
   },
 }
