@@ -8,6 +8,9 @@
           placeholder="Type to search"
           :search-input.sync="search"
           :loading="isLoading"
+          :items="itemsSearch"
+          item-text="title"
+          item-value="id"
         >
         </v-autocomplete>
       </v-col>
@@ -173,6 +176,7 @@ export default {
       ],
       search: null,
       isLoading: false,
+      itemsSearch: [],
     }
   },
   // computed akan menjalankan setiap ada perubahan
@@ -188,7 +192,10 @@ export default {
     search(val) {
       this.isLoading = true
       setTimeout(() => {
-        this.isLoading = false
+        this.itemsSearch = this.products.filter((e) => {
+          this.isLoading = false
+          return e.title
+        })
       }, 1000)
     },
   },
